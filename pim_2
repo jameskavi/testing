@@ -1,0 +1,46 @@
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service
+import time
+
+s= Service("C:\Webdriver\chromedriver.exe")
+driver = webdriver.Chrome(service=s)
+
+driver.maximize_window()
+driver.implicitly_wait(10)
+driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login")
+time.sleep(3)
+driver.find_element(By.XPATH,"//input[@name='username']").send_keys("Admin")
+driver.find_element(By.XPATH,"//input[@type='password']").send_keys("admin123")
+driver.find_element(By.XPATH,"//button[@type='submit']").click()
+#click PIM Module
+driver.find_element(By.XPATH,"//span[text()='PIM']").click()
+#edit button
+edit=driver.find_element(By.XPATH,"(//i[@class='oxd-icon bi-pencil-fill'])[4]")
+edit.click()
+#nickname
+nickname=driver.find_element(By.XPATH,"(//input)[5]")
+nickname.send_keys("Rocky")
+#id
+otherid=driver.find_element(By.XPATH,"(//input)[7]")
+otherid.send_keys("1996")
+#licenseno
+lice=driver.find_element(By.XPATH,"(//input)[8]")
+lice.send_keys("7667 3890 7667")
+#ssn number
+ssn=driver.find_element(By.XPATH,"(//input)[10]")
+ssn.send_keys("12345678")
+#sin
+sin=driver.find_element(By.XPATH,"(//input)[11]")
+sin.send_keys("98765432")
+#gender
+driver.find_element(By.XPATH,"//label[text()='Male']").click()
+#military
+mili=driver.find_element(By.XPATH,"(//input[@class='oxd-input oxd-input--active'])[10]")
+mili.send_keys("Yes")
+#smoke
+smoke=driver.find_element(By.XPATH,"(//span[@class='oxd-checkbox-input oxd-checkbox-input--active --label-right oxd-checkbox-input'])[1]")
+smoke.click()
+#save
+save=driver.find_element(By.XPATH,"(//button[text()=' Save '])[1]")
+save.click()
