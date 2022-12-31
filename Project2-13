@@ -1,0 +1,49 @@
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service
+import time
+
+
+s= Service("C:\Webdriver\chromedriver.exe")
+driver = webdriver.Chrome(service=s)
+
+driver.maximize_window()
+driver.implicitly_wait(10)
+driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login")
+time.sleep(3)
+driver.find_element(By.XPATH,"//input[@name='username']").send_keys("Admin")
+driver.find_element(By.XPATH,"//input[@type='password']").send_keys("admin123")
+driver.find_element(By.XPATH,"//button[@type='submit']").click()
+#click PIM Module
+driver.find_element(By.XPATH,"//span[text()='PIM']").click()
+#Search Employee
+search=driver.find_element(By.XPATH,"(//input[@placeholder='Type for hints...'])[1]")
+search.send_keys("Cassidy  Hope")
+time.sleep(3)
+ka=driver.find_element(By.XPATH,"//button[@type='submit']")
+ka.click()
+se=driver.find_element(By.XPATH,"(//i[@class='oxd-icon bi-pencil-fill'])[1]")
+se.click()
+#Tax
+TaxExemptions = driver.find_element(By.XPATH,'//*[@id="app"]/div[1]/div[2]/div[2]/div/div/div/div[1]/div[2]/div[8]/a').click()
+#status
+Status = driver.find_element(By.XPATH, '//label[text()="Status"]/following::div[4]').click()
+Status_1 = driver.find_element(By.XPATH, '//div[@role="listbox"]//span[text()="Married"]').click()
+#Ex
+Exemptions = driver.find_element(By.XPATH,'//*[@id="app"]/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[1]/div/div[2]/div/div[2]/input')
+Exemptions.send_keys("9")
+#State
+state = driver.find_element(By.XPATH, '//label[text()="State"]/following::div[4]').click()
+state1 = driver.find_element(By.XPATH, '//div[@role="listbox"]//span[text()="American Samoa"]').click()
+#Ex1
+Exemptions1 = driver.find_element(By.XPATH,'//*[@id="app"]/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[2]/div/div[3]/div/div[2]/input')
+Exemptions1.send_keys("")
+#Unemploy
+Unemployment_State = driver.find_element(By.XPATH, '//label[text()="Unemployment State"]/following::div[4]').click()
+Unemployment_State_1 = driver.find_element(By.XPATH, '  //div[@role="listbox"]//span[text()="American Samoa"]').click()
+#Work
+WorkState = driver.find_element(By.XPATH, '//label[text()="Work State"]/following::div[4]').click()
+WorkState_1 = driver.find_element(By.XPATH, ' //div[@role="listbox"]//span[text()="Armed Forces Canada"]').click()
+time.sleep(3)
+#Save
+Save = driver.find_element(By.XPATH, '//button[@type="submit"]').click()
