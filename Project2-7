@@ -1,0 +1,45 @@
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service
+import time
+
+
+s= Service("C:\Webdriver\chromedriver.exe")
+driver = webdriver.Chrome(service=s)
+
+driver.maximize_window()
+driver.implicitly_wait(10)
+driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login")
+time.sleep(3)
+driver.find_element(By.XPATH,"//input[@name='username']").send_keys("Admin")
+driver.find_element(By.XPATH,"//input[@type='password']").send_keys("admin123")
+driver.find_element(By.XPATH,"//button[@type='submit']").click()
+#click PIM Module
+driver.find_element(By.XPATH,"//span[text()='PIM']").click()
+#Search Employee
+search=driver.find_element(By.XPATH,"(//input[@placeholder='Type for hints...'])[1]")
+search.send_keys("Cassidy  Hope")
+time.sleep(3)
+ka=driver.find_element(By.XPATH,"//button[@type='submit']")
+ka.click()
+se=driver.find_element(By.XPATH,"(//i[@class='oxd-icon bi-pencil-fill'])[1]")
+se.click()
+#Contact
+con = driver.find_element(By.XPATH,"//a[contains(text(),'Emergency Contacts')]").click()
+#Add
+ad=driver.find_element(By.XPATH,"//body/div[@id='app']/div[@class='oxd-layout']/div[@class='oxd-layout-container']/div[@class='oxd-layout-context']/div[@class='orangehrm-background-container']/div[@class='orangehrm-card-container']/div[@class='orangehrm-edit-employee']/div[@class='orangehrm-edit-employee-content']/div[@class='orangehrm-horizontal-padding orangehrm-vertical-padding']/div[@class='orangehrm-action-header']/button[1]")
+ad.click()
+#Name
+name=driver.find_element(By.XPATH,"(//input[@class='oxd-input oxd-input--active'])[2]")
+name.send_keys("Kumar")
+#Relation
+Relation1=driver.find_element(By.XPATH,"//body[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]/div[2]/div[1]/form[1]/div[1]/div[1]/div[2]/div[1]/div[2]/input[1]")
+Relation1.send_keys("Husband")
+#Home
+home=driver.find_element(By.XPATH,"//body[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]/div[2]/div[1]/form[1]/div[2]/div[1]/div[1]/div[1]/div[2]/input[1]")
+home.send_keys("234567")
+#Mobile
+mo=driver.find_element(By.XPATH,"//body[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]/div[2]/div[1]/form[1]/div[2]/div[1]/div[2]/div[1]/div[2]/input[1]")
+mo.send_keys("9876543212")
+#Save
+save=driver.find_element(By.XPATH,"//button[text()=' Save ']").click()
