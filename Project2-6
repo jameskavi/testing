@@ -1,0 +1,59 @@
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service
+import time
+
+
+s= Service("C:\Webdriver\chromedriver.exe")
+driver = webdriver.Chrome(service=s)
+
+driver.maximize_window()
+driver.implicitly_wait(10)
+driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login")
+time.sleep(3)
+driver.find_element(By.XPATH,"//input[@name='username']").send_keys("Admin")
+driver.find_element(By.XPATH,"//input[@type='password']").send_keys("admin123")
+driver.find_element(By.XPATH,"//button[@type='submit']").click()
+#click PIM Module
+driver.find_element(By.XPATH,"//span[text()='PIM']").click()
+#Search Employee
+search=driver.find_element(By.XPATH,"(//input[@placeholder='Type for hints...'])[1]")
+search.send_keys("Cassidy  Hope")
+time.sleep(3)
+ka=driver.find_element(By.XPATH,"//button[@type='submit']")
+ka.click()
+se=driver.find_element(By.XPATH,"(//i[@class='oxd-icon bi-pencil-fill'])[1]")
+se.click()
+#Contact
+con = driver.find_element(By.XPATH,"//a[contains(text(),'Contact Details')]").click()
+#street1
+S1=driver.find_element(By.XPATH,"(//input[@class='oxd-input oxd-input--active'])[2]")
+S1.send_keys("Francis Street")
+time.sleep(5)
+#City
+city=driver.find_element(By.XPATH,"//div[@class='orangehrm-horizontal-padding orangehrm-vertical-padding']//div[1]//div[1]//div[3]//div[1]//div[2]//input[1]")
+city.send_keys("Rameswaram")
+#State
+sta=driver.find_element(By.XPATH,"(//input[@class='oxd-input oxd-input--active'])[5]")
+sta.send_keys("Tamil Nadu")
+#Post
+po=driver.find_element(By.XPATH,"(//input[@class='oxd-input oxd-input--active'])[6]")
+po.send_keys("623529")
+#Country
+country=driver.find_element(By.XPATH,"(//div[@class='oxd-select-text-input'])[1]").click()
+nation=driver.find_element(By.XPATH,"//span[text()='India']").click()
+#Home
+ho=driver.find_element(By.XPATH,"(//input[@class='oxd-input oxd-input--active'])[7]")
+ho.send_keys("22334455")
+#mobile
+mo=driver.find_element(By.XPATH,"(//input[@class='oxd-input oxd-input--active'])[8]")
+mo.send_keys("1234567890")
+#work
+wo=driver.find_element(By.XPATH,"(//input[@class='oxd-input oxd-input--active'])[9]")
+wo.send_keys("9876543210")
+time.sleep(5)
+#Email
+emi=driver.find_element(By.XPATH,"//div[@class='orangehrm-horizontal-padding orangehrm-vertical-padding']//div[1]//div[1]//div[3]//div[1]//div[2]//input[1]")
+emi.send_keys("kumar22@gmail.com")
+#Save
+sa=driver.find_element(By.XPATH,"//button[text()=' Save '] ").click()
