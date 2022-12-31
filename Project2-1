@@ -1,0 +1,48 @@
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.keys import Keys
+import time
+
+
+s= Service("C:\Webdriver\chromedriver.exe")
+driver = webdriver.Chrome(service=s)
+
+driver.maximize_window()
+driver.implicitly_wait(10)
+driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login")
+time.sleep(3)
+driver.find_element(By.XPATH,"//input[@name='username']").send_keys("Admin")
+driver.find_element(By.XPATH,"//input[@type='password']").send_keys("admin123")
+driver.find_element(By.XPATH,"//button[@type='submit']").click()
+#Admin
+admin=driver.find_element(By.XPATH,"//span[text()='Admin']")
+admin.click()
+searchbox = driver.find_element(By.XPATH,"(//input[@placeholder='Search'])[1]")
+
+items = []
+
+display=driver.find_elements(By.XPATH,'//span[@class="oxd-text oxd-text--span oxd-main-menu-item--name"]')
+
+for i in display:
+ items.append(i.text)
+
+for i in items:
+    searchbox.send_keys(i)
+
+
+    wait=WebDriverWait(driver,5)
+    search_result = wait.until(EC.presence_of_element_located((By.XPATH,'//li[@class="oxd-main-menu-item-wrapper"]//span')))
+    search_result_text = search_result.text
+    assert  search_result_text.lower() == i.lower()
+    driver.find_element(By.XPATH, '//input[@placeholder="Search"]').send_keys(Keys.CONTROL+"a")
+    time.sleep(1)
+    driver.find_element(By.XPATH, '//input[@placeholder="Search"]').send_keys(Keys.BACKSPACE)
+
+list_of_text=[]
+vali=driver.find_elements(By.XPATH,'//span[@class="oxd-text oxd-text--span oxd-main-menu-item--name"]')
+for i in vali:
+    list_of_text.append(i.text)
+print(list_of_text)
