@@ -1,0 +1,54 @@
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service
+import time
+
+
+s= Service("C:\Webdriver\chromedriver.exe")
+driver = webdriver.Chrome(service=s)
+
+driver.maximize_window()
+driver.implicitly_wait(10)
+driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login")
+time.sleep(3)
+driver.find_element(By.XPATH,"//input[@name='username']").send_keys("Admin")
+driver.find_element(By.XPATH,"//input[@type='password']").send_keys("admin123")
+driver.find_element(By.XPATH,"//button[@type='submit']").click()
+#click PIM Module
+driver.find_element(By.XPATH,"//span[text()='PIM']").click()
+#Search Employee
+search=driver.find_element(By.XPATH,"(//input[@placeholder='Type for hints...'])[1]")
+search.send_keys("Cassidy  Hope")
+time.sleep(3)
+ka=driver.find_element(By.XPATH,"//button[@type='submit']")
+ka.click()
+se=driver.find_element(By.XPATH,"(//i[@class='oxd-icon bi-pencil-fill'])[1]")
+se.click()
+#Job
+job=driver.find_element(By.XPATH,"//a[contains(text(),'Job')]").click()
+time.sleep(5)
+#Job Title
+driver.find_element(By.XPATH,"//div[@class='orangehrm-edit-employee-content']//div[2]//div[1]//div[2]//div[1]//div[1]//div[2]//i[1]").click()
+driver.find_element(By.XPATH,"//span[text()='Chief Technical Officer']").click()
+#Cato
+cato=driver.find_element(By.XPATH,"//body[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]/div[2]/div[1]/form[1]/div[1]/div[1]/div[4]/div[1]/div[2]/div[1]/div[1]/div[2]/i[1]").click()
+gery=driver.find_element(By.XPATH,"//span[text()='Officials and Managers']").click()
+#Sub
+sub=driver.find_element(By.XPATH,"//body[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]/div[2]/div[1]/form[1]/div[1]/div[1]/div[5]/div[1]/div[2]/div[1]/div[1]/div[2]/i[1]").click()
+uni=driver.find_element(By.XPATH,"//span[text()='Engineering']").click()
+#Location
+loc=driver.find_element(By.XPATH,"//body[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]/div[2]/div[1]/form[1]/div[1]/div[1]/div[6]/div[1]/div[2]/div[1]/div[1]/div[2]/i[1]").click()
+driver.find_element(By.XPATH,"//span[text()='Canadian Regional HQ']").click()
+#Emp Status
+emp=driver.find_element(By.XPATH,"//body[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]/div[2]/div[1]/form[1]/div[1]/div[1]/div[7]/div[1]/div[2]/div[1]/div[1]/div[2]/i[1]").click()
+sta=driver.find_element(By.XPATH,"//span[text()='Freelance']").click()
+#Contract
+cont=driver.find_element(By.XPATH,"(//span[@class='oxd-switch-input oxd-switch-input--active --label-right'])[1]").click()
+#start
+ata=driver.find_element(By.XPATH,"(//input[@placeholder='yyyy-mm-dd'])[2]")
+ata.send_keys("2018-10-12")
+#End
+end=driver.find_element(By.XPATH,"(//input[@placeholder='yyyy-mm-dd'])[3]")
+end.send_keys("2022-12-30")
+#Save
+up=driver.find_element(By.XPATH,"//button[text()=' Save '][1]").click()
