@@ -1,0 +1,40 @@
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver import ActionChains
+import time
+
+s= Service("C:\Webdriver\chromedriver.exe")
+driver = webdriver.Chrome(service=s)
+
+driver.maximize_window()
+driver.implicitly_wait(10)
+driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login")
+time.sleep(3)
+driver.find_element(By.XPATH,"//input[@name='username']").send_keys("Admin")
+driver.find_element(By.XPATH,"//input[@type='password']").send_keys("admin123")
+driver.find_element(By.XPATH,"//button[@type='submit']").click()
+#Admin
+admin=driver.find_element(By.XPATH,"//span[text()='Admin']")
+admin.click()
+#User
+user=driver.find_element(By.XPATH,"(//div[text()='-- Select --'])[1]")
+act=ActionChains(driver)
+act.move_to_element(user).click().perform()
+admin1=driver.find_element(By.XPATH,"(//span[contains(text(),'Admin')])[1]")
+act.move_to_element(admin1).click().perform()
+#Status
+stat1=driver.find_element(By.XPATH,"(//div[contains(text(),'-- Select --')])[1]")
+act.move_to_element(stat1).click().perform()
+ena=driver.find_element(By.XPATH,"//div[@role='option']/span[text()='Enabled']")
+act.move_to_element(ena).click().perform()
+#User1
+ESS = driver.find_element(By.XPATH,"//label[text()='User Role']/following::div[1]" )
+act.move_to_element(ESS).click().perform()
+ESS1 = driver.find_element(By.XPATH,"//div[@role='option']/span[text()='ESS']")
+act.move_to_element(ESS1).click().perform()
+#Disable
+dis=driver.find_element(By.XPATH,"//label[text()='Status']/following::div[1]")
+act.move_to_element(dis).click().perform()
+able=driver.find_element(By.XPATH,"//div[@role='option']/span[text()='Disabled']")
+act.move_to_element(able).click().perform()
