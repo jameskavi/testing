@@ -1,0 +1,68 @@
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service
+import time
+
+
+s= Service("C:\Webdriver\chromedriver.exe")
+driver = webdriver.Chrome(service=s)
+
+driver.maximize_window()
+driver.implicitly_wait(10)
+driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login")
+time.sleep(3)
+driver.find_element(By.XPATH,"//input[@name='username']").send_keys("Admin")
+driver.find_element(By.XPATH,"//input[@type='password']").send_keys("admin123")
+driver.find_element(By.XPATH,"//button[@type='submit']").click()
+#click PIM Module
+driver.find_element(By.XPATH,"//span[text()='PIM']").click()
+#Search Employee
+search=driver.find_element(By.XPATH,"(//input[@placeholder='Type for hints...'])[1]")
+search.send_keys("Cassidy  Hope")
+time.sleep(3)
+ka=driver.find_element(By.XPATH,"//button[@type='submit']")
+ka.click()
+se=driver.find_element(By.XPATH,"(//i[@class='oxd-icon bi-pencil-fill'])[1]")
+se.click()
+#Salary
+sa=driver.find_element(By.XPATH,"//a[text()='Salary']").click()
+#Add
+ad=driver.find_element(By.XPATH,"(//i[@class='oxd-icon bi-plus oxd-button-icon'])[1]").click()
+#Salary component
+Salary_Component = driver.find_element(By.XPATH,'//*[@id="app"]/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[1]/div/div[1]/div/div[2]/input')
+Salary_Component.send_keys("Salary")
+#Pay grade
+Pay_Grade = driver.find_element(By.XPATH, '//label[text()="Pay Grade"]/following::div[4]').click()
+Pay_Grade_1 = driver.find_element(By.XPATH, '//div[@role="listbox"]//span[text()="Grade 1"]').click()
+time.sleep(3)
+#Pay Frequency
+PayFrequency = driver.find_element(By.XPATH, '//label[text()="Pay Frequency"]/following::div[4]').click()
+PayFrequency_1 = driver.find_element(By.XPATH, '//div[@role="listbox"]//span[text()="Hourly"] ').click()
+time.sleep(3)
+#Currency
+currency = driver.find_element(By.XPATH, '//label[text()="Currency"]/following::div[4]').click()
+currency_1 = driver.find_element(By.XPATH, ' //div[@role="listbox"]//span[text()="United States Dollar"]').click()
+#Amount
+Amount = driver.find_element(By.XPATH,'//*[@id="app"]/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[1]/div/div[5]/div/div[2]/input')
+Amount.send_keys("2222222")
+#Doggle
+click_on_include_DDD = driver.find_element(By.XPATH,"//p[text()='Include Direct Deposit Details']/following::span[1]").click()
+#Account number
+Account_number = driver.find_element(By.XPATH,"//p[text()='Include Direct Deposit Details']/following::input[2]")
+Account_number.send_keys("23658")
+#Account type
+Account_type = driver.find_element(By.XPATH,"//label[text()='Account Type']/following::div[1]").click()
+Account = driver.find_element(By.XPATH,'//div[@role="listbox"]//span[text()="Savings"]').click()
+#Routing Number
+Rount_number = driver.find_element(By.XPATH, "//label[text()='Account Type']/following::input[1]")
+Rount_number.send_keys("133445677")
+#Amount
+Amount  = driver.find_element(By.XPATH,"//label[text()='Account Type']/following::input[2]")
+Amount.send_keys("500000")
+#Save
+Save = driver.find_element(By.XPATH,"//button[@type='submit']").click()
+
+
+
+
+
